@@ -2,37 +2,39 @@
 
 Enlarges the image after generation, just before Forge decodes it. A 512 × 768 generation becomes 1024 × 1536 at 2× or 2048 × 3072 at 4×.
 
-## Lite and Base at 2× and 4×
+<a id="lite-and-base-at-2-and-4"></a>
 
-Each pair uses the same prompt, seed (123), 256 × 256 generation size and fine-detail setting (0.9) on an RTX 5090. **Lite is on the left and Base is on the right.** The crops show the same central region at its original output resolution. Open the full PNGs to inspect the whole image.
+## Lite, Standard and Base at 2× and 4×
+
+Each row shows **Lite (left), Standard (middle) and Base (right)**. All three use the same prompt, seed (123), 256 × 256 generation size and fine-detail setting (0.9) on an RTX 5090. Each panel shows the same central crop. Open the full PNGs below each row to inspect individual pixels.
 
 ### FLUX.2 Klein 4B
 
 **2× · 512 × 512 output**
 
-![FLUX.2 Klein 4B at 2×, matching crops with Lite on the left and Base on the right](docs/comparison/klein-2x-comparison.png)
+![FLUX.2 Klein 4B at 2× with Lite, Standard and Base crops from left to right](docs/comparison/klein-2x-comparison.png)
 
-[Lite PNG](docs/comparison/klein-2x-lite.png) · [Base PNG](docs/comparison/klein-2x-base.png)
+[Lite PNG](docs/comparison/klein-2x-lite.png) · [Standard PNG](docs/comparison/klein-2x-standard.png) · [Base PNG](docs/comparison/klein-2x-base.png)
 
 **4× · 1024 × 1024 output**
 
-![FLUX.2 Klein 4B at 4×, matching crops with Lite on the left and Base on the right](docs/comparison/klein-4x-comparison.png)
+![FLUX.2 Klein 4B at 4× with Lite, Standard and Base crops from left to right](docs/comparison/klein-4x-comparison.png)
 
-[Lite PNG](docs/comparison/klein-4x-lite.png) · [Base PNG](docs/comparison/klein-4x-base.png)
+[Lite PNG](docs/comparison/klein-4x-lite.png) · [Standard PNG](docs/comparison/klein-4x-standard.png) · [Base PNG](docs/comparison/klein-4x-base.png)
 
 <details><summary>MOSS-Image comparisons</summary>
 
 **2× · 512 × 512 output**
 
-![MOSS-Image at 2×, matching crops with Lite on the left and Base on the right](docs/comparison/moss-2x-comparison.png)
+![MOSS-Image at 2× with Lite, Standard and Base crops from left to right](docs/comparison/moss-2x-comparison.png)
 
-[Lite PNG](docs/comparison/moss-2x-lite.png) · [Base PNG](docs/comparison/moss-2x-base.png)
+[Lite PNG](docs/comparison/moss-2x-lite.png) · [Standard PNG](docs/comparison/moss-2x-standard.png) · [Base PNG](docs/comparison/moss-2x-base.png)
 
 **4× · 1024 × 1024 output**
 
-![MOSS-Image at 4×, matching crops with Lite on the left and Base on the right](docs/comparison/moss-4x-comparison.png)
+![MOSS-Image at 4× with Lite, Standard and Base crops from left to right](docs/comparison/moss-4x-comparison.png)
 
-[Lite PNG](docs/comparison/moss-4x-lite.png) · [Base PNG](docs/comparison/moss-4x-base.png)
+[Lite PNG](docs/comparison/moss-4x-lite.png) · [Standard PNG](docs/comparison/moss-4x-standard.png) · [Base PNG](docs/comparison/moss-4x-base.png)
 
 </details>
 
@@ -40,15 +42,15 @@ Each pair uses the same prompt, seed (123), 256 × 256 generation size and fine-
 
 **2× · 512 × 512 output**
 
-![FLUX.3 FP8 at 2×, matching crops with Lite on the left and Base on the right](docs/comparison/flux3-2x-comparison.png)
+![FLUX.3 FP8 at 2× with Lite, Standard and Base crops from left to right](docs/comparison/flux3-2x-comparison.png)
 
-[Lite PNG](docs/comparison/flux3-2x-lite.png) · [Base PNG](docs/comparison/flux3-2x-base.png)
+[Lite PNG](docs/comparison/flux3-2x-lite.png) · [Standard PNG](docs/comparison/flux3-2x-standard.png) · [Base PNG](docs/comparison/flux3-2x-base.png)
 
 **4× · 1024 × 1024 output**
 
-![FLUX.3 FP8 at 4×, matching crops with Lite on the left and Base on the right](docs/comparison/flux3-4x-comparison.png)
+![FLUX.3 FP8 at 4× with Lite, Standard and Base crops from left to right](docs/comparison/flux3-4x-comparison.png)
 
-[Lite PNG](docs/comparison/flux3-4x-lite.png) · [Base PNG](docs/comparison/flux3-4x-base.png)
+[Lite PNG](docs/comparison/flux3-4x-lite.png) · [Standard PNG](docs/comparison/flux3-4x-standard.png) · [Base PNG](docs/comparison/flux3-4x-base.png)
 
 </details>
 
@@ -77,4 +79,4 @@ The bundled inference package comes from TensorForger's MIT-licensed Steppe 1.1.
 
 On an RTX 5090, Forge's Generate API returned 512 × 512 images for 256 × 256 requests with FLUX.2 Klein 4B, MOSS-Image and the original Project Invisible FLUX.3 FP8 runtime. MOSS also passed unmasked img2img. The saved FLUX.3 PNG matched the returned image and recorded the enlarged dimensions. Separate tests decoded a 256 × 256 input at 512 × 512 and 1024 × 1024 with both the Forge FLUX.2 VAE and the FLUX.3 decoder.
 
-The tests above used Standard. Lite and Base also passed twelve Forge txt2img tests on the RTX 5090. Each model ran at 2× and 4× with Klein 4B, MOSS-Image and FLUX.3 FP8. From a 256 × 256 request, every saved PNG had the expected 512 × 512 or 1024 × 1024 dimensions, matched the returned pixels, and recorded the selected Steppe model and scale. The tests used one prompt and seed. Other GPUs, output sizes and FLUX.3 profiles remain unverified.
+The tests above used Standard. The gallery includes all eighteen Forge txt2img tests across Lite, Standard and Base on the RTX 5090. Each model ran at 2× and 4× with Klein 4B, MOSS-Image and FLUX.3 FP8. From a 256 × 256 request, every saved PNG had the expected 512 × 512 or 1024 × 1024 dimensions, matched the returned pixels, and recorded the selected Steppe model and scale. The tests used one prompt and seed. Other GPUs, output sizes and FLUX.3 profiles remain unverified.
