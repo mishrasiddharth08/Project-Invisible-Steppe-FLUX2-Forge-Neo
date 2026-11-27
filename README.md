@@ -75,6 +75,10 @@ The native hook checks the actual FLUX.2 VAE and packed image format. Masked img
 
 The bundled inference package comes from TensorForger's MIT-licensed Steppe 1.1.0. See LICENSE and NOTICE. Uses the PyTorch environment included with Forge.
 
+## FLUX.3 compatibility fix
+
+Steppe can now run with the default Project Invisible FLUX.3 extension even when the experimental Comfy runtime is not installed. The experimental path is unchanged. Three CPU regression tests cover the default layout, the experimental layout and genuine dependency errors (`python -m unittest discover -s tests`). The comparison gallery above reflects the existing RTX 5090 runs, not a new GPU run of this fix.
+
 ## Local tests
 
 On an RTX 5090, Forge's Generate API returned 512 × 512 images for 256 × 256 requests with FLUX.2 Klein 4B, MOSS-Image and the original Project Invisible FLUX.3 FP8 runtime. MOSS also passed unmasked img2img. The saved FLUX.3 PNG matched the returned image and recorded the enlarged dimensions. Separate tests decoded a 256 × 256 input at 512 × 512 and 1024 × 1024 with both the Forge FLUX.2 VAE and the FLUX.3 decoder.

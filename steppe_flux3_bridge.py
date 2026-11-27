@@ -57,14 +57,19 @@ def upscale_tokens(tokens, ids, callback, seed):
 def decoder_scope(callback):
     """Cover original, experimental distilled and exact Base runtime dispatch."""
     runtime = importlib.import_module("flux3_forge.runtime")
-    comfy = importlib.import_module("flux3_forge.comfy_bridge")
+    modules = [runtime]
+    try:
+        modules.append(importlib.import_module("flux3_forge.comfy_bridge"))
+    except ModuleNotFoundError as error:
+        if error.name != "flux3_forge.comfy_bridge":
+            raise
     ae_module = importlib.import_module("flux3_forge.vendor.flux3.autoencoder")
     decoder_type = ae_module.AutoEncoder
     with _lock:
         owner_thread = threading.get_ident()
         request_token = _request_callback.set(callback)
         original_decode = decoder_type.decode
-        engines = [(module, module.generate) for module in (runtime, comfy)]
+        engines = [(module, module.generate) for module in modules]
 
         @wraps(original_decode)
         def decode(ae, tokens, ids):
